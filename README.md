@@ -2,7 +2,7 @@
 
 # Analog Peripheral Manager (APM) — Sine waveform generation with ADC, DAC and APM using PIC18F56Q71 Microcontroller with MCC Melody
 
-This code example highlights the capabilities of the Analog Peripheral Manager (APM) as well as its configuration in MCC Melody. The Digital-to-Analog Converter (DAC) is used to output a sine waveform with variable frequency controlled by the value measured by the Analog-to-Digital Converter (ADC) from a potentiometer. The Timer0 (TMR0) module is used as auto-conversion trigger source for the ADC peripheral while the Timer1 (TMR1) module’s overflow interrupt is used to alter the output of the DAC peripheral. The ADC peripheral’s conversion-complete interrupt is used to modify the overflow period of TMR1 module. The APM periodically enables the ADC and DAC to perform conversions and output the sine waveform respectively.
+This code example highlights the capabilities of the Analog Peripheral Manager (APM) and its configuration in MCC Melody. The Digital-to-Analog Converter (DAC) is used to output a sine waveform with variable frequency controlled by the value measured by the Analog-to-Digital Converter (ADC) from a potentiometer. The Timer0 (TMR0) module is used as an auto-conversion trigger source for the ADC peripheral, while the Timer1 (TMR1) module’s overflow interrupt is used to alter the output of the DAC peripheral. The ADC peripheral’s conversion-complete interrupt is used to modify the overflow period of TMR1 module. The APM periodically enables the ADC and DAC to perform conversions and output the sine waveform.
 
 ## Related Documentation
 
@@ -53,18 +53,18 @@ The following configurations must be made for this project:
   - Timer Mode: 8-bit
   - Clock Source: HFINTOSC
   - Enable Synchronisation: No
-  - Requested Period: 0.01 s
+  - Requested Period: 0.01s
   - TMR Interrupt: No
 - TMR1:
   - Enable Timer: Yes
   - 16-bit Read/Write Mode Enable: Yes
   - Clock Source: HFINTOSC
   - Prescaler: 1:1
-  - Timer Period: 8 us
+  - Timer Period: 8 μs
   - TMR Interrupt Enable: Yes
 - DAC1:
-  - V<sub>DD</sub>: 3.3 V
-  - Required ref: 3.3 V
+  - V<sub>DD</sub>: 3.3V
+  - Required ref: 3.3V
   - DAC Enable: No
   - DAC Positive reference selection: V<sub>DD</sub>
   - DAC Negative reference selection: V<sub>SS</sub>
@@ -74,7 +74,7 @@ The following configurations must be made for this project:
   - Input Configuration: single-ended mode
   - Auto-conversion Trigger Source: TMR0
   - Result Format: right justified
-  - V<sub>DD</sub>: 3.3 V
+  - V<sub>DD</sub>: 3.3V
   - Clock Selection: FOSC
   - Clock Divider: FOSC/64
   - ADI Interrupt: Enabled
@@ -85,16 +85,16 @@ The following configurations must be made for this project:
 - APM:
   - Enable APM: Yes
   - Clock Source: LFINTOSC
-  - Requested Period: 10 s
+  - Requested Period: 10s
   - APM Events:
     - Start 1: enable ADCA
     - End 1: -
     - Start 2: enable DAC1
     - End 2: disable ADCA and DAC1 
-  - Requested Start 1: 2 s
-  - Requested End1: 0 s
-  - Requested Start 2: 1 s
-  - Requested End 2: 8 s
+  - Requested Start 1: 2s
+  - Requested End1: 0s
+  - Requested Start 2: 1s
+  - Requested End 2: 8s
 
 | Pin | Configuration  |        Description        |
 | :-: | :------------: | :-----------------------: |
@@ -135,7 +135,7 @@ This code example shows how to configure the APM to toggle the ADC and DAC perip
 
 ## How to Program the Curiosity Nano Board
 
-This chapter demonstrates how to use the MPLAB® X IDE to program a PIC® device with an Example_Project.X. This is applicable to other projects.
+This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device with an Example_Project.X. This applies to other projects.
 
 1.  Connect the board to the PC.
 
