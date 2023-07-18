@@ -40,7 +40,7 @@ void SYSTEM_Initialize(void)
     ADC_Initialize();
     DAC1_Initialize();
     Timer0_Initialize();
-    Timer1_Initialize();
+    TMR1_Initialize();
     APM_Initialize();
     INTERRUPT_Initialize();
 }

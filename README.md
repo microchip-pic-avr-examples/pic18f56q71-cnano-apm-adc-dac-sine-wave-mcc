@@ -15,7 +15,7 @@ More details and code examples on the PIC18F56Q71 can be found at the following 
 
 - [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.10 or newer
 - [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.41 or newer
-- [PIC18F-Q Series Device Pack](https://packs.download.microchip.com/) v1.18.389 or newer
+- [PIC18F-Q Series Device Pack](https://packs.download.microchip.com/) v1.19.401 or newer
 
 ## Hardware Used
 
@@ -41,11 +41,23 @@ The following configurations must be made for this project:
   - Clock Source: HFINTOSC
   - HF Internal Clock: 64 MHz
   - Clock Divider: 1
+
+  <br><img src="images/case2_clock_control.PNG" width="600">
 - Configuration bits:
+
   - WDT operating mode: WDT Disabled
+
+  <br><img src="images/case2_configuration_bits.PNG" width="600">
+
 - Interrupt Manager:
   - Enable Vectored Interrupt: Yes
   - ADC Interrupt: Low Priority
+
+  <br><img src="images/case2_interrupt_manager_1.PNG" width="600">
+  <br><img src="images/case2_interrupt_manager_2.PNG" width="600">
+
+  The ADC Interrupt must be set as Low Priority as to not alter the timings at which Timer1 Interrupt occurs.
+  
 - TMR0:
   - Enable Timer: Yes
   - Clock Prescaler: 1:4096
@@ -55,6 +67,9 @@ The following configurations must be made for this project:
   - Enable Synchronisation: No
   - Requested Period: 0.01s
   - TMR Interrupt: No
+
+  <br><img src="images/case2_tmr0.PNG" width="600">
+
 - TMR1:
   - Enable Timer: Yes
   - 16-bit Read/Write Mode Enable: Yes
@@ -62,6 +77,9 @@ The following configurations must be made for this project:
   - Prescaler: 1:1
   - Timer Period: 8 μs
   - TMR Interrupt Enable: Yes
+
+  <br><img src="images/case2_tmr1.PNG" width="600">
+
 - DAC1:
   - V<sub>DD</sub>: 3.3V
   - Required ref: 3.3V
@@ -69,6 +87,9 @@ The following configurations must be made for this project:
   - DAC Positive reference selection: V<sub>DD</sub>
   - DAC Negative reference selection: V<sub>SS</sub>
   - DAC Output Enable Selection: DACOUT1 Enabled and DACOUT2 Disabled
+
+  <br><img src="images/case2_dac.PNG" width="600">
+
 - ADC:
   - ADC Enable: No
   - Input Configuration: single-ended mode
@@ -82,6 +103,10 @@ The following configurations must be made for this project:
     - Positive Channel Selection: ANA1
     - Positive Voltage Reference: V<sub>DD</sub>
     - Operating Mode Selection: Basic mode
+
+   <br><img src="images/case2_adc_1.PNG" width="600">
+   <br><img src="images/case2_adc_2.PNG" width="600">
+
 - APM:
   - Enable APM: Yes
   - Clock Source: LFINTOSC
@@ -96,6 +121,11 @@ The following configurations must be made for this project:
   - Requested Start 2: 1s
   - Requested End 2: 8s
 
+  <br><img src="images/case2_apm_1.PNG" width="600">
+  <br><img src="images/case2_apm_2.PNG" width="600">
+
+  The configured APM period is 10s. The Start 1 event, which enables the analog part of the ADC peripheral (ADCA), occurs 2s after the period counter started. The ADC conversions are triggered by software, therefore there is no need to configure the APM to enable the ADCD. The End 1 event is irrelevant as it is not used to disable any module. The Start 2 event, which enables the DAC1 peripheral, is set to occur 1s after the Start 1 event. The End 2 event, which disables both the ADC and the DAC1 peripherals, is set to occur 8s after the Start 1 event and coincides with the end of the period.
+
 | Pin | Configuration  |        Description        |
 | :-: | :------------: | :-----------------------: |
 | RA1 |  Analog input  |        potentiometer      |
@@ -104,13 +134,15 @@ The following configurations must be made for this project:
 | RB2 | Digital output |         DAC1 status       |
 | RB3 | Digital output |   analog modules status   |
 
+<br><img src="images/case2_pin_grid_view.PNG" width="600">
+
 | Pin |     Label      |
 | :-: | :------------: |
 | RB1 |   ADCAStatus   |
 | RB2 |   DAC1Status   |
 | RB3 |   APMStatus    |
 
-<br>
+<br><img src="images/case2_pins_configuration.PNG" width="600">
 
 ## Demo
 
@@ -120,13 +152,13 @@ Board setup:
 
 Logic analyzer screen captures:
 
-<br><img src="images/case2_demo_1.PNG" width="1000">
-<br><img src="images/case2_demo_4.PNG" width="1000">
-<br><img src="images/case2_demo_3_paint_edit.png" width="1000">
+<br><img src="images/case2_demo1.PNG" width="1000">
+<br><img src="images/case2_demo2.PNG" width="1000">
+<br><img src="images/case2_demo3.png" width="1000">
 
 ## Summary
 
-This code example shows how to configure the APM to toggle the ADC and DAC peripherals and generate a sine waveform with variable frequency.
+This code example shows how to configure the APM to enable and disable the ADC and DAC peripherals and generate a sine waveform with variable frequency.
 
 <br><br>
 [Back to Top](#analog-peripheral-manager-apm--sine-waveform-generation-with-adc-dac-and-apm-using-pic18f56q71-microcontroller-with-mcc-melody)

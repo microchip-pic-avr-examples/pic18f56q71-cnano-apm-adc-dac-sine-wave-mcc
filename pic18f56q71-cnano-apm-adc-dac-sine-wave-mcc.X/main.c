@@ -34,19 +34,17 @@
 #include <math.h>
 #include <stdio.h>
 
-/* Number of samples for a sine wave period */
-#define SINE_PERIOD_STEPS       (100UL)
-/* Sine wave amplitude */
-#define SINE_AMPLITUDE          (511UL)  /* LSB Steps */
-/* Sine wave DC offset */
-#define SINE_DC_OFFSET          (512UL)  /* LSB Steps */
+#define SINE_PERIOD_STEPS               (100UL)                     /* number of samples for a sine wave period */
+#define SINE_AMPLITUDE                  (511UL)                     /* LSB steps */
+#define DC_OFFSET                       (512UL)                     /* LSB steps */
 
-#define MAX_PERIOD_COUNT                    (65024UL)                   /* value from TMR1 register */
-#define MAX_ADC_RESULT                      (2541UL)                    /* Vref = 2V, Vdd = 3.3V */
-#define ONE_QUARTER_OF_MAX_ADC_RESULT       (MAX_ADC_RESULT / 4)
-#define FIRST_RANGE_INITIAL_VALUE           (1)
-#define SECOND_RANGE_INITIAL_VALUE          (MAX_PERIOD_COUNT - 3 * ONE_QUARTER_OF_MAX_ADC_RESULT)
-#define MULTIPLICATION_FACTOR               (SECOND_RANGE_INITIAL_VALUE * 100 / ONE_QUARTER_OF_MAX_ADC_RESULT)
+#define MAX_PERIOD_COUNT                (65024UL)                   /* value from TMR1 register */
+#define MAX_ADC_RESULT                  (2541UL)                    /* POT 3 VREF = 2V, VDD = 3.3V */
+
+#define ONE_QUARTER_OF_MAX_ADC_RESULT   (MAX_ADC_RESULT / 4)
+#define FIRST_RANGE_INITIAL_VALUE       (1)
+#define SECOND_RANGE_INITIAL_VALUE      (MAX_PERIOD_COUNT - 3 * ONE_QUARTER_OF_MAX_ADC_RESULT)
+#define MULTIPLICATION_FACTOR           (SECOND_RANGE_INITIAL_VALUE * 100 / ONE_QUARTER_OF_MAX_ADC_RESULT)
 
 /* Buffer to store the sine wave samples */
 uint16_t sineWave[SINE_PERIOD_STEPS];
@@ -59,7 +57,7 @@ static void sineWaveInit(void)
     uint8_t i;
     for(i = 0; i < SINE_PERIOD_STEPS; i++)
     {
-        sineWave[i] = SINE_DC_OFFSET + (uint16_t)(SINE_AMPLITUDE * sin(2 * M_PI * i / SINE_PERIOD_STEPS));
+        sineWave[i] = DC_OFFSET + (uint16_t)(SINE_AMPLITUDE * sin(2 * M_PI * i / SINE_PERIOD_STEPS));
     }
 }
 
@@ -87,7 +85,7 @@ void ADC_Handler(void)
     {
         newPeriodCount = SECOND_RANGE_INITIAL_VALUE + (adcResult - ONE_QUARTER_OF_MAX_ADC_RESULT);
     }
-    Timer1_PeriodCountSet(newPeriodCount);
+    TMR1_PeriodCountSet(newPeriodCount);
 }
 
 /*
@@ -97,8 +95,10 @@ void ADC_Handler(void)
 int main(void)
 { 
     SYSTEM_Initialize();
-    Timer1_OverflowCallbackRegister(TMR1_Handler);
+    
+    TMR1_OverflowCallbackRegister(TMR1_Handler);
     ADC_SetADIInterruptHandler(ADC_Handler);
+    
     sineWaveInit();
     
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
