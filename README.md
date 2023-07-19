@@ -1,8 +1,8 @@
 <a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Analog Peripheral Manager (APM) — Sine waveform generation with ADC, DAC and APM using PIC18F56Q71 Microcontroller with MCC Melody
+# Analog Peripheral Manager (APM) — Sine Waveform Generation with ADC, DAC and APM Using the PIC18F56Q71 Microcontroller with MCC Melody
 
-This code example highlights the capabilities of the Analog Peripheral Manager (APM) and its configuration in MCC Melody. The Digital-to-Analog Converter (DAC) is used to output a sine waveform with variable frequency controlled by the value measured by the Analog-to-Digital Converter (ADC) from a potentiometer. The Timer0 (TMR0) module is used as an auto-conversion trigger source for the ADC peripheral, while the Timer1 (TMR1) module’s overflow interrupt is used to alter the output of the DAC peripheral. The ADC peripheral’s conversion-complete interrupt is used to modify the overflow period of TMR1 module. The APM periodically enables the ADC and DAC to perform conversions and output the sine waveform.
+This code example highlights the capabilities of the Analog Peripheral Manager (APM) and its configuration in MPLAB® Code Configurator (MCC) Melody. The Digital-to-Analog Converter (DAC) is used to output a sine waveform with variable frequency controlled by the value measured by the Analog-to-Digital Converter (ADC) from a potentiometer. The Timer0 (TMR0) module is used as an auto-conversion trigger source for the ADC peripheral, while the Timer1 (TMR1) module’s overflow interrupt is used to alter the output of the DAC peripheral. The ADC peripheral’s conversion-complete interrupt is used to modify the overflow period of TMR1 module. The APM periodically enables the ADC and DAC to perform conversions and output the sine waveform.
 
 ## Related Documentation
 
@@ -25,13 +25,13 @@ More details and code examples on the PIC18F56Q71 can be found at the following 
 - [Curiosity Nano Adapter](https://www.microchip.com/en-us/development-tool/AC164162):
   <br><img src="images/Curiosity-Nano-Adapter.jpg" height="400">
 
-- [POT 3 CLICK](https://www.mikroe.com/pot-3-click) board (mikroBUS socket 1):
+- [POT 3 CLICK board™](https://www.mikroe.com/pot-3-click) (mikroBUS™ socket 1):
   <br><img src="images/pot-3-click-board.jpg" height="400">
 <br>
 
 ## Operation
 
-To program the Curiosity Nano board with this MPLAB® X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
+To program the Curiosity Nano board with this MPLAB X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
 
 ## Setup
 
@@ -45,7 +45,7 @@ The following configurations must be made for this project:
   <br><img src="images/case2_clock_control.PNG" width="600">
 - Configuration bits:
 
-  - WDT operating mode: WDT Disabled
+  - WDT operating mode: WDT disabled
 
   <br><img src="images/case2_configuration_bits.PNG" width="600">
 
@@ -92,9 +92,9 @@ The following configurations must be made for this project:
 
 - ADC:
   - ADC Enable: No
-  - Input Configuration: single-ended mode
+  - Input Configuration: Single-ended mode
   - Auto-conversion Trigger Source: TMR0
-  - Result Format: right justified
+  - Result Format: Right justified
   - V<sub>DD</sub>: 3.3V
   - Clock Selection: FOSC
   - Clock Divider: FOSC/64
@@ -112,12 +112,12 @@ The following configurations must be made for this project:
   - Clock Source: LFINTOSC
   - Requested Period: 10s
   - APM Events:
-    - Start 1: enable ADCA
+    - Start 1: Enable ADCA
     - End 1: -
-    - Start 2: enable DAC1
-    - End 2: disable ADCA and DAC1 
+    - Start 2: Enable DAC1
+    - End 2: Disable ADCA and DAC1 
   - Requested Start 1: 2s
-  - Requested End1: 0s
+  - Requested End 1: 0s
   - Requested Start 2: 1s
   - Requested End 2: 8s
 
@@ -128,11 +128,11 @@ The following configurations must be made for this project:
 
 | Pin | Configuration  |        Description        |
 | :-: | :------------: | :-----------------------: |
-| RA1 |  Analog input  |        potentiometer      |
+| RA1 |  Analog input  |        Potentiometer      |
 | RA2 |  Analog output |            DAC1           |
 | RB1 | Digital output |         ADCA status       |
 | RB2 | Digital output |         DAC1 status       |
-| RB3 | Digital output |   analog modules status   |
+| RB3 | Digital output |   Analog modules status   |
 
 <br><img src="images/case2_pin_grid_view.PNG" width="600">
 
@@ -161,30 +161,30 @@ Logic analyzer screen captures:
 This code example shows how to configure the APM to enable and disable the ADC and DAC peripherals and generate a sine waveform with variable frequency.
 
 <br><br>
-[Back to Top](#analog-peripheral-manager-apm--sine-waveform-generation-with-adc-dac-and-apm-using-pic18f56q71-microcontroller-with-mcc-melody)
+[Back to Top](#analog-peripheral-manager-apm--sine-waveform-generation-with-adc-dac-and-apm-using-the-pic18f56q71-microcontroller-with-mcc-melody)
 
 <br>
 
 ## How to Program the Curiosity Nano Board
 
-This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device with an Example_Project.X. This applies to other projects.
+This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device with an `Example_Project.X`. This is applicable to other projects.
 
 1.  Connect the board to the PC.
 
-2.  Open the Example_Project.X project in MPLAB® X IDE.
+2.  Open the `Example_Project.X` project in MPLAB X IDE.
 
-3.  Set the Example_Project.X project as main project.
-    <br>Right click the project in the **Projects** tab and click **Set as Main Project**.
+3.  Set the `Example_Project.X` project as main project.
+    <br>Right click the project in the **Projects** tab and click Set as Main Project.
     <br><img src="images/Program_Set_as_Main_Project.PNG" width="600">
 
-4.  Clean and build the Example_Project.X project.
-    <br>Right click the **Example_Project.X** project and select **Clean and Build**.
+4.  Clean and build the `Example_Project.X` project.
+    <br>Right click the `Example_Project.X` project and select Clean and Build.
     <br><img src="images/Program_Clean_and_Build.PNG" width="600">
 
-5.  Select **PICxxxxx Curiosity Nano** in the Connected Hardware Tool section of the project settings:
-    <br>Right click the project and click **Properties**.
+5.  Select PICxxxxx Curiosity Nano in the Connected Hardware Tool section of the project settings:
+    <br>Right click the project and click Properties.
     <br>Click the arrow under the Connected Hardware Tool.
-    <br>Select **PICxxxxx Curiosity Nano** (click the **SN**), click **Apply** and then click **OK**:
+    <br>Select PICxxxxx Curiosity Nano (click the SN), click **Apply** and then **OK**:
     <br><img src="images/Program_Tool_Selection.jpg" width="600">
 
 6.  Program the project to the board.
@@ -193,7 +193,12 @@ This chapter demonstrates how to use the MPLAB X IDE to program a PIC® device w
 
 <br>
 
-- [Back to Setup](#setup)
-- [Back to Demo](#demo)
-- [Back to Summary](#summary)
-- [Back to Top](#analog-peripheral-manager-apm--sine-waveform-generation-with-adc-dac-and-apm-using-pic18f56q71-microcontroller-with-mcc-melody)
+- [Analog Peripheral Manager (APM) — Sine Waveform Generation with ADC, DAC and APM Using the PIC18F56Q71 Microcontroller with MCC Melody](#analog-peripheral-manager-apm--sine-waveform-generation-with-adc-dac-and-apm-using-the-pic18f56q71-microcontroller-with-mcc-melody)
+  - [Related Documentation](#related-documentation)
+  - [Software Used](#software-used)
+  - [Hardware Used](#hardware-used)
+  - [Operation](#operation)
+  - [Setup](#setup)
+  - [Demo](#demo)
+  - [Summary](#summary)
+  - [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board)
