@@ -86,7 +86,7 @@ The following configurations must be made for this project:
   - DAC Enable: No
   - DAC Positive reference selection: V<sub>DD</sub>
   - DAC Negative reference selection: V<sub>SS</sub>
-  - DAC Output Enable Selection: DACOUT1 Enabled and DACOUT2 Disabled
+  - DAC Output Enable Selection: DACOUT1 enabled and DACOUT2 disabled
 
   <br><img src="images/case2_dac.PNG" width="600">
 
